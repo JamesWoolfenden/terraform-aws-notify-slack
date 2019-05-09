@@ -73,6 +73,8 @@ resource "aws_lambda_function" "notify_slack" {
       SLACK_USERNAME    = "${var.slack_username}"
       SLACK_EMOJI       = "${var.slack_emoji}"
     }
+
+    tags="${var.common_tags}"
   }
 
   lifecycle {
