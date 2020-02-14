@@ -51,6 +51,3 @@ variable "kms_key_arn" {
   default     = ""
   type        = string
 }
-
-
-

@@ -7,11 +7,9 @@ data "aws_iam_policy_document" "lambda" {
   source_json = data.aws_iam_policy_document.lambda_basic.0.json
 
   statement {
-    sid = "AllowKMSDecrypt"
-    effect = "Allow"
-    actions = ["kms:Decrypt"]
+    sid       = "AllowKMSDecrypt"
+    effect    = "Allow"
+    actions   = ["kms:Decrypt"]
     resources = ["${var.kms_key_arn == "" ? "" : var.kms_key_arn}"]
   }
 }
-
-
