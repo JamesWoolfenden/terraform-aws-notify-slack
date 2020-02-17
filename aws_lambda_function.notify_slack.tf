@@ -1,12 +1,12 @@
 
 resource "aws_lambda_function" "notify_slack" {
-  count = "${var.create}"
+  count = var.create
 
-  filename = "${data.archive_file.notify_slack.0.output_path}"
+  filename = data.archive_file.notify_slack.0.output_path
 
-  function_name = "${var.lambda_function_name}"
+  function_name    = var.lambda_function_name
 
-  role             = aws_iam_role.lambda.arn
+  role             = aws_iam_role.lambda.0.arn
   handler          = "index.handler"
   source_code_hash = data.archive_file.notify_slack.0.output_base64sha256
   runtime          = "nodejs8.10"
@@ -24,8 +24,8 @@ resource "aws_lambda_function" "notify_slack" {
 
   lifecycle {
     ignore_changes = [
-      "filename",
-      "last_modified",
+      filename,
+      last_modified,
     ]
   }
 }
