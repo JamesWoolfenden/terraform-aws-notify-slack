@@ -5,7 +5,8 @@ variable "kms_key_arn" {
 }
 
 resource "aws_kms_key" "this" {
-  description = "KMS key for notify-slack test"
+  description         = "KMS key for notify-slack test"
+  enable_key_rotation = true
 }
 
 resource "aws_kms_alias" "this" {
