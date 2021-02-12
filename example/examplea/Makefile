@@ -24,5 +24,4 @@ docs:
 	terraform-docs md . > README.md
 
 valid:
-	tflint
-	terraform fmt -check=true -diff=true
+	terraform fmt -check=true -recursive

@@ -1,6 +1,5 @@
-
 data "aws_iam_policy_document" "lambda_basic" {
-  count = "${var.create}"
+  count = var.create
 
   statement {
     sid = "AllowWriteToCloudwatchLogs"

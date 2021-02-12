@@ -11,14 +11,14 @@ resource "aws_kms_key" "this" {
 
 resource "aws_kms_alias" "this" {
   name          = "alias/kms-test-key"
-  target_key_id = "${aws_kms_key.this.id}"
+  target_key_id = aws_kms_key.this.id
 }
 
 # Encrypt the URL, storing encryption here will show it in logs and in tfstate
 # https://www.terraform.io/docs/state/sensitive-data.html
 data "aws_kms_ciphertext" "slack_url" {
   plaintext = "https://hooks.slack.com/services/AAA/BBB/CCC"
-  key_id    = "${aws_kms_key.this.arn}"
+  key_id    = aws_kms_key.this.arn
 }
 
 module "notify_slack" {
@@ -26,12 +26,12 @@ module "notify_slack" {
 
   sns_topic_name = "slack-topic"
 
-  slack_webhook_url = "${data.aws_kms_ciphertext.slack_url.ciphertext_blob}"
+  slack_webhook_url = data.aws_kms_ciphertext.slack_url.ciphertext_blob
   slack_channel     = "aws-notification"
   slack_username    = "reporter"
 
   # Option 1
-  kms_key_arn = "${aws_kms_key.this.arn}"
+  kms_key_arn = aws_kms_key.this.arn
 
   # Option 2
   //  kms_key_arn = "${data.aws_kms_alias.this.target_key_arn}"
