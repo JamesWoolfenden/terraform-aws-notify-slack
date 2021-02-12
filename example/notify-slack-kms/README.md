@@ -12,8 +12,9 @@ There are 3 ways to define KMS key which should be used by Lambda function:
 
 Note: Set `create_with_kms_key = true` when providing value of `kms_key_arn` to create required IAM policy which allows to decrypt using specified KMS key.
 
-### Option 1:
-```
+### Option 1
+
+```terraform
 resource "aws_kms_key" "this" {
   description = "KMS key for notify-slack test"
 }
@@ -27,9 +28,9 @@ resource "aws_kms_alias" "this" {
 // create_with_kms_key = true
 ```
 
-### Option 2:
+### Option 2
 
-```
+```terraform
 data "aws_kms_alias" "this" {
  name = "alias/kms-test-key"
 }
@@ -38,9 +39,9 @@ data "aws_kms_alias" "this" {
 // create_with_kms_key = true
 ```
 
-### Option 3:
+### Option 3
 
-```
+```terraform
 variable "kms_key_arn" {
   default = "arn:aws:kms:eu-west-1:835367859851:key/054b4846-95fe-4537-94f2-1dfd255238cf"
 }
@@ -54,9 +55,9 @@ variable "kms_key_arn" {
 To run this example you need to execute:
 
 ```bash
-$ terraform init
-$ terraform plan
-$ terraform apply
+ terraform init
+ terraform plan
+ terraform apply
 ```
 
 Note that in practice, encryption of the Slack webhook URL should happen differently (outside of this module).
