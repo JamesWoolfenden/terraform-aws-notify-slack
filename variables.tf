@@ -1,11 +1,13 @@
 variable "create" {
+  type        = number
   description = "Whether to create all resources"
-  default     = true
+  default     = 1
 }
 
 variable "create_sns_topic" {
+  type        = number
   description = "Whether to create new SNS topic"
-  default     = true
+  default     = 1
 }
 
 variable "create_with_kms_key" {
