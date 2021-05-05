@@ -1,5 +1,9 @@
 
 resource "aws_lambda_function" "notify_slack" {
+  # checkov:skip=CKV_AWS_116: Old code
+  # checkov:skip=CKV_AWS_117: VPC not required
+  # checkov:skip=CKV_AWS_115: concurrency not an issue
+
   count = var.create
 
   filename = data.archive_file.notify_slack.0.output_path
