@@ -1,0 +1,11 @@
+version: 0.1
+resource_usage:
+  module.notify_slack.aws_lambda_function.notify_slack[0]:
+    monthly_requests: 0
+    request_duration_ms: 0
+  module.notify_slack.aws_sns_topic.this[0]:
+    monthly_requests: 0
+    request_size_kb: 0
+  module.notify_slack.aws_sns_topic_subscription.sns_notify_slack[0]:
+    monthly_requests: 0
+    request_size_kb: 0
