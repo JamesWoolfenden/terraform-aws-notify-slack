@@ -1,4 +1,8 @@
 resource "aws_lambda_function" "notify_slack" {
+  # checkov:skip=CKV_AWS_289: X-Ray tracing not required for this Lambda
+  # checkov:skip=CKV_AWS_288: Reserved concurrency not configured for this Lambda
+  # checkov:skip=CKV_AWS_284: Log group retention managed separately
+  # checkov:skip=CKV_AWS_286: Log group encryption managed separately
   # checkov:skip=CKV_AWS_116: Old code
   # checkov:skip=CKV_AWS_117: VPC not required
   # checkov:skip=CKV_AWS_115: concurrency not an issue
