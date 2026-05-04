@@ -1,26 +1,21 @@
-
-
 variable "kms_key_arn" {
   default = "arn:aws:kms:eu-west-1:000014191260:key/66db1c5d-d42b-4e28-8efb-07a9cf607a73"
 }
-
 resource "aws_kms_key" "this" {
+  # checkov:skip=CKV2_AWS_64: For example only, key policy managed via IAM
   description         = "KMS key for notify-slack test"
   enable_key_rotation = true
 }
-
 resource "aws_kms_alias" "this" {
   name          = "alias/kms-test-key"
   target_key_id = aws_kms_key.this.id
 }
-
 # Encrypt the URL, storing encryption here will show it in logs and in tfstate
 # https://www.terraform.io/docs/state/sensitive-data.html
 data "aws_kms_ciphertext" "slack_url" {
   plaintext = "https://hooks.slack.com/services/AAA/BBB/CCC"
   key_id    = aws_kms_key.this.arn
 }
-
 module "notify_slack" {
   source = "../../"
 
@@ -42,7 +37,6 @@ module "notify_slack" {
 
   create_with_kms_key = true
 }
-
 resource "aws_cloudwatch_metric_alarm" "LambdaDuration" {
   alarm_name          = "NotifySlackDuration"
   comparison_operator = "GreaterThanOrEqualToThreshold"

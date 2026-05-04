@@ -1,18 +1,15 @@
 provider "aws" {
   region = "eu-west-1"
 }
-
 variable "kms_key_arn" {
   default = "arn:aws:kms:eu-west-1:000014191260:key/66db1c5d-d42b-4e28-8efb-07a9cf607a73"
 }
-
 # Encrypt the URL, storing encryption here will show it in logs and in tfstate
 # https://www.terraform.io/docs/state/sensitive-data.html
 data "aws_kms_ciphertext" "slack_url" {
   plaintext = "https://hooks.slack.com/services/AAA/BBB/CCC"
   key_id    = var.kms_key_arn
 }
-
 module "notify_slack" {
   source = "../../"
 

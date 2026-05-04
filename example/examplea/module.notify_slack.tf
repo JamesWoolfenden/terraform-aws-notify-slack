@@ -1,4 +1,3 @@
-
 module "notify_slack" {
   source = "../../"
 

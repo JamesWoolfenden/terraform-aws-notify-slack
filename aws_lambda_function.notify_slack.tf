@@ -1,4 +1,3 @@
-
 resource "aws_lambda_function" "notify_slack" {
   # checkov:skip=CKV_AWS_116: Old code
   # checkov:skip=CKV_AWS_117: VPC not required
