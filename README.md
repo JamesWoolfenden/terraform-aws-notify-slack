@@ -120,22 +120,24 @@ resource "aws_iam_policy" "terraform_pike" {
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
-                "SNS:CreateTopic",
-                "SNS:DeleteTopic",
-                "SNS:GetTopicAttributes",
-                "SNS:ListTagsForResource",
-                "SNS:ListTopics",
-                "SNS:SetTopicAttributes"
+                "SNS:GetSubscriptionAttributes",
+                "SNS:Subscribe",
+                "SNS:Unsubscribe"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor1",
             "Effect": "Allow",
             "Action": [
-                "ec2:DescribeAccountAttributes"
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeNetworkInterfaces"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor2",
@@ -152,10 +154,25 @@ resource "aws_iam_policy" "terraform_pike" {
                 "iam:PassRole",
                 "iam:PutRolePolicy"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateGrant",
+                "kms:Decrypt",
+                "kms:Encrypt",
+                "kms:GenerateDataKey"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor4",
             "Effect": "Allow",
             "Action": [
                 "lambda:AddPermission",
@@ -167,7 +184,24 @@ resource "aws_iam_policy" "terraform_pike" {
                 "lambda:ListVersionsByFunction",
                 "lambda:RemovePermission"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "sns:CreateTopic",
+                "sns:DeleteTopic",
+                "sns:GetTopicAttributes",
+                "sns:ListTagsForResource",
+                "sns:ListTopics",
+                "sns:SetTopicAttributes"
+            ],
+            "Resource": [
+                "*"
+            ]
         }
     ]
 })
