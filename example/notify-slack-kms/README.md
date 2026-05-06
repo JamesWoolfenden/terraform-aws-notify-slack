@@ -65,22 +65,37 @@ Note that in practice, encryption of the Slack webhook URL should happen differe
 Note that this example may create resources which can cost money. Run `terraform destroy` when you don't need these resources.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
-|------|---------|
-| aws | n/a |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+
+## Modules
+
+| Name | Source | Version |
+| ---- | ------ | ------- |
+| <a name="module_notify_slack"></a> [notify\_slack](#module\_notify\_slack) | ../../ | n/a |
+
+## Resources
+
+| Name | Type |
+| ---- | ---- |
+| [aws_kms_ciphertext.slack_url](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/kms_ciphertext) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
-| kms\_key\_arn | n/a | `string` | `"arn:aws:kms:eu-west-1:000014191260:key/66db1c5d-d42b-4e28-8efb-07a9cf607a73"` | no |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | n/a | `string` | `"arn:aws:kms:eu-west-1:000014191260:key/66db1c5d-d42b-4e28-8efb-07a9cf607a73"` | no |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
-| this\_sns\_topic\_arn | The ARN of the created SNS topic from which messages will be sent to Slack |
-
+| ---- | ----------- |
+| <a name="output_this_sns_topic_arn"></a> [this\_sns\_topic\_arn](#output\_this\_sns\_topic\_arn) | The ARN of the created SNS topic from which messages will be sent to Slack |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

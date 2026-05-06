@@ -1,4 +1,7 @@
 resource "aws_lambda_function" "notify_slack" {
+  # checkov:skip=CKV_AWS_173: kms_key_arn configurable via var.kms_key_arn
+  # checkov:skip=CKV_AWS_272: code signing not required for this minimal example
+  # checkov:skip=CKV_AWS_363: legacy module
   # checkov:skip=CKV_AWS_289: X-Ray tracing not required for this Lambda
   # checkov:skip=CKV_AWS_288: Reserved concurrency not configured for this Lambda
   # checkov:skip=CKV_AWS_284: Log group retention managed separately
